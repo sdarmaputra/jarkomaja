@@ -1,0 +1,260 @@
+h1, h2, h3, h4, h5, h6, p, blockquote, footer, ul li, a {
+  font-family: 'Source Sans Pro', sans-serif; }
+
+.full-section {
+	position: relative;
+	height: 100%;
+}
+
+.bg-color-white {
+	background: #F2F2F2;
+}
+
+.bg-color-grey {
+	background: #EDEDED;
+}
+
+.bg-color-grey2 {
+	background: #848484;
+}
+
+.bg-color-tosca {
+	background: #57C2AD;
+}
+
+.bg-color-tosca-dark {
+	background: #10997E;
+}
+
+.bg-color-dark {
+	background: #393939;
+}
+
+.bg-color-dark2 {
+	background: #151515;
+}
+
+.bg-color-tosca2 {
+	background: #85DFD5;
+}
+
+.bg-color-purple {
+	background: #9E4FAE;
+}
+
+.bg-color-purple2 {
+	background: #BB84C6;
+}
+
+.bg-color-purple-dark {
+	background: #842F95;
+}
+
+.bg-color-blue {
+	background: #549BC1;
+}
+
+.bg-color-blue-dark {
+	background: #1C5C7F;
+}
+
+.bg-color-blue2 {
+	background: #9BC1D5;
+}
+
+.bg-color-soft-blue {
+	background: #F5A9A9;
+}
+
+.bg-color-brown {
+	background: #C8B062;
+}
+
+.full-width {
+	width: 100%;
+	margin: 0;
+}
+
+.huge-text {
+	font-size: 100;
+}
+
+/* TEXT STYLES */
+.text-color-white {
+	color: #fff !important;
+}
+
+
+.text-color-white h1, .text-color-white h2, .text-color-white h3, .text-color-white h4, .text-color-white h5, .text-color-white h6, 
+.text-color-white p, .text-color-white blockquote, .text-color-white footer, .text-color-white ul li, .text-color-white a {
+	color: #fff !important;
+}
+
+.text-color-white > li:hover > a,
+.text-color-white > li > a:focus,
+.text-color-white > li.uk-open > a {
+  background-color: #f5f5f5 !important;
+  color: #444444 !important;
+  /* 3 */
+  outline: none;
+}
+/* OnClick */
+.text-color-white > li > a:active {
+  background-color: #dddddd !important;
+  color: #444444 !important;
+}
+/* Active */
+.text-color-white > li.uk-active > a {
+  background-color: #f5f5f5 !important;
+  color: #444444 !important;
+}
+
+.text-color-tosca {
+	color: #57C2AD;
+}
+
+.text-color-tosca h1, .text-color-tosca h2, .text-color-tosca h3, .text-color-tosca h4, .text-color-tosca h5, .text-color-tosca h6, 
+.text-color-tosca p, .text-color-tosca blockquote, .text-color-tosca footer, .text-color-tosca ul li, .text-color-tosca a {
+	color: #57C2AD;
+}
+
+.text-color-dark {
+	color: #393939;
+}
+
+.text-color-brown {
+	color: #C8B062;
+}
+
+.text-color-dark h1, .text-color-dark h2, .text-color-dark h3, .text-color-dark h4, .text-color-dark h5, .text-color-dark h6, 
+.text-color-dark p, .text-color-dark blockquote, .text-color-dark footer, .text-color-dark ul li, .text-color-dark a {
+	color: #393939;
+}
+
+.text-align-left {
+	text-align: left;
+}
+
+.text-align-center {
+	text-align: center;
+}
+
+
+/* /TEXT STYLES */
+
+
+.height-1-1 {
+	min-height: 100%;
+}
+
+.height-1-9 {
+	height: 90%;
+}
+
+.top-margin-2 {
+	margin-top: 2%;
+}
+
+.no-margin {
+	margin: 0;
+}
+
+/* PARTICLES */
+#particles {
+	z-index: -1;
+	width: 100%;
+  	height: 100%;
+}
+
+#start-content {
+	position: absolute;
+  	left: 0;
+	top: 30%;
+	padding: 0;
+	width: 100%;
+	text-align: center;
+}
+/* /PARTICLES */
+
+/* Modifier: `uk-button-primary`
+ */
+.uk-button-white {
+  background-color: #F2F2F2;
+  color: #424242;
+}
+/* Hover */
+.uk-button-white:hover,
+.uk-button-white:focus {
+  background-color: #424242;
+  color: #F2F2F2;
+}
+/* Active */
+.uk-button-white:active,
+.uk-button-white.uk-active {
+  background-color: #424242;
+  color: #F2F2F2;
+}
+
+.uk-button-dark {
+  background-color: #424242;
+  color: #F2F2F2;
+}
+/* Hover */
+.uk-button-dark:hover,
+.uk-button-darl:focus {
+  background-color: #F2F2F2;
+  color: #424242;
+  border: 1px solid #424242;
+}
+/* Active */
+.uk-button-dark:active,
+.uk-button-dark.uk-active {
+  background-color: #F2F2F2;
+  color: #424242;
+}
+
+.uk-button-tosca {
+  background-color: #10997E;
+  color: #F2F2F2;
+}
+/* Hover */
+.uk-button-tosca:hover,
+.uk-button-tosca:focus {
+  background-color: #F2F2F2;
+  color: #10997E;
+}
+/* Active */
+.uk-button-tosca:active,
+.uk-button-tosca.uk-active {
+  background-color: #F2F2F2;
+  color: #10997E;
+}
+
+/*BORDER*/
+.bottom-border-tosca {
+	border-bottom: 3px solid #10997E;
+}
+
+.bottom-border-white {
+	border-bottom: 3px solid #F2F2F2;
+}
+
+.bottom-border-brown {
+	border-bottom: 3px solid #C8B062;
+}
+
+.icon-box {
+	width: 100px;
+	height: 100px;
+	font-size: 50;
+}
+
+.uk-navbar-dark2 {
+	background: #151515;
+}
+
+.article {
+	text-align: justify;
+	font-size: 16;
+	min-height: 60%;
+}
