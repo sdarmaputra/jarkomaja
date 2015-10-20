@@ -17,21 +17,21 @@
       <ul id="dropdown_user" class="dropdown-content">
         <li><a href="#!"><i class="left material-icons">settings</i>Profile Settings</a></li>
         <li class="divider"></li>
-        <li><a href="#!"><i class="left material-icons">power_settings_new</i>Log Out</a></li>
+        <li><a href="<?php echo site_url('gate/logout'); ?>"><i class="left material-icons">power_settings_new</i>Log Out</a></li>
       </ul>
       <nav>
         <div class="nav-wrapper cyan accent-4">
           <a href="#!" class="brand-logo" style="padding: 5px;"><?php echo $this->config->item('site_name'); ?></a>
           <ul class="right hide-on-med-and-down">
-            <li style="width:200px; text-align:right;"><a class="dropdown-button" href="#!" data-activates="dropdown_user">User Menu &nbsp;<i class="material-icons right">arrow_drop_down</i></a></li>
+            <li style="width:200px; text-align:right;"><a class="dropdown-button" href="#!" data-activates="dropdown_user"><?php echo $this->session->userdata('username'); ?><i class="material-icons right">arrow_drop_down</i></a></li>
           </ul>
         </div>
       </nav>
     </div>
 
-    <div class="row">
+    <div class="row" style="margin:0px;">
 
-      <div id="sidebar" class="col s12 m3 l2 grey lighten-2 z-depth-2" style="padding:0; height: 600px;"> 
+      <div id="sidebar" class="col s12 m3 l2 grey lighten-2 z-depth-2" style="padding:0; height: 700px;"> 
         <div class="collection" style="padding:0; margin:0;">
           <a href="#!" class="collection-item"><i class="left material-icons">web</i>Dashboard</a>
           <a href="<?php echo site_url('dashboard/broadcast'); ?>" class="collection-item"><i class="left material-icons">message</i>Broadcast Messages</a>
@@ -47,12 +47,13 @@
           </div>
       </div>
     </div>
-    <!-- <div class="footer-copyright tosca">
-      <div class="container">
-      © 2014 Copyright Text
-      <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+    <footer class="page-footer light-blue darken-4" style="margin:0px; padding:0px;">
+      <div class="footer-copyright light-blue darken-4">
+        <div class="container light-blue darken-4">
+        © 2015 Copyright AJK
+        </div>
       </div>
-    </div> -->
+    </footer>
     <script>
       window.onload = function() {
         var height;

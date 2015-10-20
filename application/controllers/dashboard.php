@@ -3,6 +3,9 @@ class Dashboard extends MY_Controller {
 	var $data = array();
 	function __construct() {
 		parent:: __construct();
+		if ((null == $this->session->userdata('is_logged_in')) || $this->session->userdata('is_logged_in')==0) {
+			redirect(site_url('gate'));
+		}
 	}
 
 	function index() {
@@ -13,15 +16,34 @@ class Dashboard extends MY_Controller {
 		$data = $this->data;
 		if ($option == null) {
 			$this->load->model('grup_model');
-			$data['group_list'] = $this->grup_model->getWhere(array('status_aktif' => 1));
+			$data['group_list'] = $this->grup_model->getWhere(array('user_iduser' => $this->session->userdata('iduser'),'status_aktif' => 1));
 			$this->template->load('dashboard', 'broadcast_page', $data);	
-		} else {
-			$url = 'http://10.151.36.116:3000/';
+		} else if ($option == 'send'){
+			$this->load->model(array('grup_model','report_model'));
+			$url = $this->config->item('gammu_url');
 			$smstext = '"'.$this->input->post('smstext').'"';
 			$idgrup = $this->input->post('idgrup');
+			$iduser = $this->session->userdata('iduser');
+
+			$now = date('Y-m-d H:m:s');
+			$coupon = base64_encode($now);
+			$numbers = $this->grup_model->getReportNumber($idgrup, $iduser);
+			if ($numbers) {
+				foreach ($numbers as $rw) {
+					$this->report_model->create(array(
+						'tanggal' => $now,
+						'iduser' => $iduser,
+						'idgrup' => $idgrup,
+						'idnomor' => $rw['nomor_idnomorhp'],
+						'pesan' => '',
+						'coupon' => $coupon,
+						'sukses' => 0));
+				}
+			}
+
 			$this->load->library('curl');
-			$result = $this->curl->simple_post($url, array('smstext' => $smstext, 'idgrup' => $idgrup));
-			var_dump($result);
+			//$result = $this->curl->simple_post($url, array('smstext' => $smstext, 'idgrup' => $idgrup));
+			//var_dump($result);
 		}
 		
 	}
@@ -31,13 +53,25 @@ class Dashboard extends MY_Controller {
 		$data = $this->data;
 		$this->load->model('grup_model');
 		if ($option == null && $id == null) {
-			$data['group_list'] = $this->grup_model->getByUserId(1);
+			$data['group_list'] = $this->grup_model->getByUserId($this->session->userdata('iduser'));
 			$this->template->load('dashboard', 'groups', $data);	
 		} else {
 			$data['details'] = $this->grup_model->getById($id);
 			if (!$data['details']) redirect(site_url('dashboard/groups'), 'refresh');
 			$this->template->load('dashboard', 'group_edit', $data);
 		}
+	}
+
+	function group_member($group_id = null) {
+		$data = $this->data;
+		if ($group_id != null) {
+			$this->load->model(array('nomor_model', 'grup_model'));
+			$isAvailable = $this->grup_model->isAvailable($group_id);
+			if ($isAvailable) {
+				$data['recipient_list'] = $this->nomor_model->getByGroupId($group_id);	
+				$this->template->load('dashboard', 'group_member', $data);
+			} else redirect(site_url('dashboard/groups'));
+		} else redirect(site_url('dashboard/groups'));
 	}
 
 	function add_group() {
@@ -47,7 +81,7 @@ class Dashboard extends MY_Controller {
 			$now = date('Y-m-d h:m:s');
 			$this->grup_model->create(array(
 				'namagrup' => $group_name,
-				'user_iduser' => 1,
+				'user_iduser' => $this->session->userdata('iduser'),
 				'tanggal_buat' => $now,
 				'tanggal_modifikasi' => $now,
 				'status_aktif' => 1));
@@ -156,7 +190,7 @@ class Dashboard extends MY_Controller {
 	function reports() {
 		$data = $this->data;
 		$this->load->model('report_model');
-		$data['reports'] = $this->report_model->getWhere(array('iduser' => 1), 'tanggal desc');
+		$data['reports'] = $this->report_model->getWhere(array('iduser' => $this->session->userdata('iduser')), 'tanggal desc');
 		$this->template->load('dashboard', 'reports', $data);
 	}
 }

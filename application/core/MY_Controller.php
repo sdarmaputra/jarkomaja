@@ -6,6 +6,7 @@ class MY_Controller extends CI_Controller {
 		header("Access-Control-Allow-Origin: *");
 		$this->load->library('template');
 		$this->config->set_item('site_name', 'JARKOMAJA');
+		$this->config->set_item('gammu_url', 'http://10.151.36.55:3000/');
 	}
 }
 ?>

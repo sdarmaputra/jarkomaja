@@ -25,8 +25,9 @@
                       </p>
                     </div>
                     <div class="card-action">
-                      <a href="<?php echo site_url('dashboard/groups/edit/'.$rw['idgrup']); ?>"><i class="material-icons">settings</i></a>
-                      <a href="#" onclick="confirm_delete('<?php echo $rw['idgrup']; ?>'); return false;"><i class="material-icons">delete</i></a>
+                      <a href="<?php echo site_url('dashboard/group_member/'.$rw['idgrup']); ?>"><i class="material-icons" title="Group member management">supervisor_account</i></a>
+                      <a href="<?php echo site_url('dashboard/groups/edit/'.$rw['idgrup']); ?>" title="Group settings"><i class="material-icons">settings</i></a>
+                      <a href="#" onclick="confirm_delete('<?php echo $rw['idgrup']; ?>'); return false;" title="Delete group"><i class="material-icons">delete</i></a>
                     </div>
                   </div>
                 </div>
