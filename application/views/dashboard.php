@@ -57,8 +57,8 @@
     <script>
       window.onload = function() {
         var height;
-        if ($('#content').height() > 600) {
-          height = $('#content').height() + 'px';
+        if ($(window).height() > 600) {
+          height = $(window).height() + 'px';
         }
         document.getElementById('sidebar').style.height = height;  
       }
