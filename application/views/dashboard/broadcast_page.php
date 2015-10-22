@@ -24,7 +24,7 @@
               </div>
               <div class="row">
                 <div class="input-field col s12">
-                  <a href="#" class="btn-large waves-effect waves-light tosca" onclick="confirm_send(); return false;">Sent Message</a>
+                  <a href="#" class="btn-large waves-effect waves-light teal" onclick="confirm_send(); return false;">Sent Message</a>
                 </div>
               </div>
             </form>
@@ -34,8 +34,8 @@
                 <p>Are you sure sending this message?</p>
               </div>
               <div class="modal-footer">
+                <a href="#!" onclick="document.getElementById('send_form').submit(); return false;" class="btn waves-effect waves-light teal z-depth-0" >Yes</a>
                 <a href="#!" class="modal-close btn waves-effect waves-light red z-depth-0">Cancel</a>
-                <a href="#!" onclick="document.getElementById('send_form').submit(); return false;" class="btn waves-effect waves-light tosca z-depth-0" >Yes</a>
               </div>
             </div>
       </div>
@@ -46,6 +46,6 @@
         });
 
         <?php if ( null != $this->session->flashdata('after_process') && $this->session->flashdata('after_process') == true){ ?>
-            Materialize.toast('<?php echo $this->session->flashdata("messages"); ?>', 5000);
+            Materialize.toast('<?php echo $this->session->flashdata("messages"); ?>', 7000);
         <?php } ?>
       </script>

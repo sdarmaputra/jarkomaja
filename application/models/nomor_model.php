@@ -18,5 +18,18 @@ class Nomor_model extends MY_Model {
 			return false;
 		}
 	}
+
+	public function getNotIncludedIn($group_id) {
+		$this->db->select('*');
+		$this->db->from($this->table_name);
+		$sub = "idnomorhp NOT IN (SELECT nomor_idnomorhp FROM grup_has_nomor WHERE grup_idgrup =".$group_id.") AND status_aktif =1";
+		$this->db->where($sub);
+		$q = $this->db->get();
+		if ($q->num_rows() > 0) {
+			return $q->result_array();
+		} else {
+			return false;
+		}
+	}
 }
 ?>

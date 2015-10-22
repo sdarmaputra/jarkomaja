@@ -2,7 +2,7 @@
         <h4>Recipient Management</h4>
 
         <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-          <a class="btn-large waves-effect waves-light tosca" onclick="switchElement('form', 'table'); return false;">
+          <a class="btn-large waves-effect waves-light teal" onclick="switchElement('form', 'table'); return false;">
             <i class="large material-icons left">playlist_add</i> Add New Recipient
           </a>
         </div>
@@ -27,8 +27,8 @@
                     <td><?php echo $rw['nomorhp']; ?></td>
                     <td><?php echo $rw['nama']; ?></td>
                     <td>
-                      <a href="<?php echo site_url('dashboard/recipients/edit/'.$rw['idnomorhp']); ?>"><i class="material-icons">settings</i></a>
-                      <a href="#" onclick="confirm_delete('<?php echo $rw['idnomorhp']; ?>'); return false;"><i class="material-icons">delete</i></a>
+                      <a class="teal-text" href="<?php echo site_url('dashboard/recipients/edit/'.$rw['idnomorhp']); ?>"><i class="material-icons">settings</i></a>
+                      <a class="red-text" href="#" onclick="confirm_delete('<?php echo $rw['idnomorhp']; ?>'); return false;"><i class="material-icons">delete</i></a>
                     </td>
                   </tr>      
             <?php $i++; }
@@ -57,8 +57,8 @@
           </div>
           <div class="row">
             <div class="input-field col s6">
-              <a href="#" onclick="document.getElementById('new_recipient').submit(); return false;" class="btn-large waves-effect waves-light tosca">Submit</a>
               <a href="#" onclick="switchElement('table', 'form'); return false;" class="btn-large waves-effect waves-light red">Cancel</a>
+              <a href="#" onclick="document.getElementById('new_recipient').submit(); return false;" class="btn-large waves-effect waves-light teal">Submit</a>
             </div>
           </div>
         </form>
@@ -74,8 +74,8 @@
           <p>Are you sure deleting this data?</p>
         </div>
         <div class="modal-footer">
+          <a href="#!" class="btn waves-effect waves-light teal z-depth-0" id="confirm_delete_button">Yes</a>
           <a href="#!" class="modal-close btn waves-effect waves-light red z-depth-0">Cancel</a>
-          <a href="#!" class="btn waves-effect waves-light tosca z-depth-0" id="confirm_delete_button">Yes</a>
         </div>
       </div>
 

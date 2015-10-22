@@ -16,6 +16,13 @@ function confirm_delete(id) {
 	$('#delete_modal').openModal();
 }
 
+function confirm_multiple_delete() {
+	document.getElementById('confirm_delete_button').onclick = function(){
+		$('#delete_form').submit();
+	};
+	$('#delete_modal').openModal();
+}
+
 function confirm_update() {
 	$('#update_modal').openModal();	
 }

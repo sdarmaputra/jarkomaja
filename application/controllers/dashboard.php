@@ -9,7 +9,11 @@ class Dashboard extends MY_Controller {
 	}
 
 	function index() {
-		$this->template->load('dashboard', null, null);
+		$data = $this->data;
+		$this->load->model(array('grup_model', 'report_model'));
+		$data['group_count'] = $this->grup_model->countWhere(array('user_iduser' => $this->session->userdata('iduser')));
+		$data['report_count'] = $this->report_model->countWhere(array('iduser' => $this->session->userdata('iduser')));
+		$this->template->load('dashboard', 'home', $data);
 	}
 
 	function broadcast($option = null) {
@@ -21,11 +25,13 @@ class Dashboard extends MY_Controller {
 		} else if ($option == 'send'){
 			$this->load->model(array('grup_model','report_model'));
 			$url = $this->config->item('gammu_url');
-			$smstext = '"'.$this->input->post('smstext').'"';
+			$smstext = $this->input->post('smstext');
 			$idgrup = $this->input->post('idgrup');
 			$iduser = $this->session->userdata('iduser');
+			$msg_len = ceil(strlen($smstext)/160);
+			$smstext = '"'.$smstext.'"';
 
-			$now = date('Y-m-d H:m:s');
+			$now = date('Y-m-d H:i:s');
 			$coupon = base64_encode($now);
 			$numbers = $this->grup_model->getReportNumber($idgrup, $iduser);
 			if ($numbers) {
@@ -35,17 +41,16 @@ class Dashboard extends MY_Controller {
 						'iduser' => $iduser,
 						'idgrup' => $idgrup,
 						'idnomor' => $rw['nomor_idnomorhp'],
-						'pesan' => '',
+						'pesan' => $smstext,
 						'coupon' => $coupon,
-						'sukses' => 0));
+						'sukses' => 0,
+						'biaya' => $msg_len));
 				}
 			}
-
-			$this->load->library('curl');
-			//$result = $this->curl->simple_post($url, array('smstext' => $smstext, 'idgrup' => $idgrup));
-			//var_dump($result);
+			$this->session->set_flashdata('after_process', true);
+			$this->session->set_flashdata('messages', 'Your messages have been added into messages queue. Go to report page to see delivery reports.');	
+			redirect(site_url('dashboard/broadcast'));
 		}
-		
 	}
 
 
@@ -66,19 +71,97 @@ class Dashboard extends MY_Controller {
 		$data = $this->data;
 		if ($group_id != null) {
 			$this->load->model(array('nomor_model', 'grup_model'));
-			$isAvailable = $this->grup_model->isAvailable($group_id);
+			$isAvailable = $this->grup_model->getById($group_id);
 			if ($isAvailable) {
+				$data['namagrup'] = '';
+				foreach ($isAvailable as $rx) {
+					$data['namagrup'] = $rx['namagrup'];
+				}
+				$data['idgrup'] = $group_id;
 				$data['recipient_list'] = $this->nomor_model->getByGroupId($group_id);	
 				$this->template->load('dashboard', 'group_member', $data);
 			} else redirect(site_url('dashboard/groups'));
 		} else redirect(site_url('dashboard/groups'));
 	}
 
+	function add_member($group_id = null, $table_page = 0) {
+		$data = $this->data;
+		if ($group_id != null) {
+			$this->load->model(array('nomor_model', 'grup_model'));
+			$isAvailable = $this->grup_model->getById($group_id);
+			if ($isAvailable) {
+				$data['namagrup'] = '';
+				foreach ($isAvailable as $rx) {
+					$data['namagrup'] = $rx['namagrup'];
+				}
+				$data['idgrup'] = $group_id;
+				$data['recipient_list'] = $this->nomor_model->getNotIncludedIn($group_id);	
+				$this->template->load('dashboard', 'add_member', $data);
+			} else redirect(site_url('dashboard/groups'));
+		} else redirect(site_url('dashboard/groups'));
+	}
+
+	function do_add_member() {
+		$checked = $this->input->post('add_id');
+		$idgrup = $this->input->post('idgrup');
+		if (isset($checked) && $checked != null) {
+			$this->load->model('grup_model');
+			foreach ($checked as $rw) {
+				$this->grup_model->addGroupMember(array(
+					'grup_idgrup' => $idgrup,
+					'grup_user_iduser' => $this->session->userdata('iduser'),
+					'nomor_idnomorhp' => $rw));
+			}
+			$this->session->set_flashdata('after_process', true);
+			$this->session->set_flashdata('messages', 'Successfully add recipient(s) into group :)');	
+			redirect(site_url('dashboard/group_member/'.$idgrup), 'refresh');
+		} else {
+			$this->session->set_flashdata('after_process', true);
+			$this->session->set_flashdata('messages', 'Failed! Please choose recipient(s) to be added into group!');	
+			redirect(site_url('dashboard/add_member/'.$idgrup), 'refresh');
+		}
+	}
+
+	function delete_from_group() {
+		$idgrup = $this->input->post('idgrup');
+		$idnomorhp = $this->input->post('delete_id');
+		if (isset($idnomorhp) && $idnomorhp != '') {
+			$this->load->model('grup_model');
+			$this->grup_model->deleteGroupMember(array(
+				'grup_idgrup' => $idgrup,
+				'grup_user_iduser' => $this->session->userdata('iduser'),
+				'nomor_idnomorhp' => $idnomorhp));
+			$this->session->set_flashdata('messages', 'Successfully delete recipient from group!');
+		}
+		$this->session->set_flashdata('after_process', true);
+		redirect(site_url('dashboard/group_member/'.$idgrup), 'refresh');
+	}
+
+	function delete_checked_from_group() {
+		$checked = $this->input->post('delete_id');
+		$idgrup = $this->input->post('idgrup');
+		if (isset($checked) && $checked != null) {
+			$this->load->model('grup_model');
+			foreach ($checked as $rw) {
+				$this->grup_model->deleteGroupMember(array(
+					'grup_idgrup' => $idgrup,
+					'grup_user_iduser' => $this->session->userdata('iduser'),
+					'nomor_idnomorhp' => $rw));
+			}
+			$this->session->set_flashdata('messages', 'Successfully delete recipient(s) from group!');	
+			
+		} else {
+			$this->session->set_flashdata('messages', 'Failed! Please choose recipient(s) to be deleted from group!');	
+		}
+		$this->session->set_flashdata('after_process', true);
+		redirect(site_url('dashboard/group_member/'.$idgrup), 'refresh');
+	}
+
 	function add_group() {
 		$group_name = $this->input->post('group_name');
 		if (isset($group_name) && $group_name != '') {
 			$this->load->model('grup_model');
-			$now = date('Y-m-d h:m:s');
+			$now = date('Y-m-d H:i:s');
 			$this->grup_model->create(array(
 				'namagrup' => $group_name,
 				'user_iduser' => $this->session->userdata('iduser'),
@@ -99,7 +182,7 @@ class Dashboard extends MY_Controller {
 		$group_status = $this->input->post('group_status');
 		if (isset($group_name) && $group_name != '' && isset($group_status) && $group_status != '') {
 			$this->load->model('grup_model');
-			$now = date('Y-m-d h:m:s');
+			$now = date('Y-m-d H:i:s');
 			$this->grup_model->update($group_id, array(
 				'namagrup' => $group_name,
 				'tanggal_modifikasi' => $now,
@@ -141,7 +224,7 @@ class Dashboard extends MY_Controller {
 		$nomor_hp = $this->input->post('nomor_hp');
 		if (isset($nama) && $nama != '' && isset($nomor_hp) && $nomor_hp != '') {
 			$this->load->model('nomor_model');
-			$now = date('Y-m-d h:m:s');
+			$now = date('Y-m-d H:i:s');
 			$this->nomor_model->create(array(
 				'nomorhp' => $nomor_hp,
 				'nama' => $nama,
@@ -174,7 +257,7 @@ class Dashboard extends MY_Controller {
 		$recipient_status = $this->input->post('recipient_status');
 		if (isset($recipient_name) && $recipient_name != '' && isset($recipient_phone) && $recipient_phone != '' && isset($recipient_status) && $recipient_status != '') {
 			$this->load->model('nomor_model');
-			$now = date('Y-m-d h:m:s');
+			$now = date('Y-m-d H:i:s');
 			$this->nomor_model->update($recipient_id, array(
 				'nama' => $recipient_name,
 				'nomorhp' => $recipient_phone,

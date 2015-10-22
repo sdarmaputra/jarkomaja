@@ -33,7 +33,7 @@
                   </div>
                   <div class="row">
                     <div class="input-field col s12">
-                      <i class="material-icons prefix">phone</i>
+                      <i class="material-icons prefix">lock</i>
                       <input id="icon_telephone" name="password" type="password" class="validate">
                       <label for="icon_telephone">Password</label>
                     </div>
@@ -47,12 +47,13 @@
                   </a>
                 </div>
                 <div class="row">
-                  <a href="#" class="col s12 btn-large waves-effect waves-light btn teal lighten-4 teal-text">
+                  <a href="#" class="col s12 btn-large waves-effect waves-light btn teal white-text">
                     <span class="center-align">Register</span>
                   </a>
                 </div>
               </div>
           </div>
+          <h6 class="center-align grey-text text-lighten-1">&copy; 2015 Computer Architecture and Network Laboratory</h6>
           
       </div>
       <div class="col s1 l4">

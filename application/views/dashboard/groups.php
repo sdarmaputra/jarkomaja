@@ -2,7 +2,7 @@
         <h4>Group Management </h4>
 
         <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-          <a class="btn-large waves-effect waves-light tosca" onclick="switchElement('form', 'table'); return false;">
+          <a class="btn-large waves-effect waves-light teal" onclick="switchElement('form', 'table'); return false;">
             <i class="large material-icons left">playlist_add</i> Add New Group
           </a>
         </div>
@@ -12,10 +12,10 @@
             if ($group_list) {
               foreach ($group_list as $rw) { ?>
                 <div class="col s6 m5 l4">
-                  <div class="card red accent-2 tooltipped" data-position="top" data-delay="50" data-tooltip="<?php echo $rw['namagrup']; ?>">
+                  <div class="card cyan darken-2 tooltipped" data-position="top" data-delay="50" data-tooltip="<?php echo $rw['namagrup']; ?>">
                     <div class="card-content">
                       <span class="card-title truncate"><?php echo $rw['namagrup']; ?></span>
-                      <p class="red-text text-lighten-4">                        
+                      <p class="cyan-text text-lighten-4">                        
                         <?php 
                           echo '<strong>created:</strong> '.$rw['tanggal_buat'].'<br/>'; 
                           echo '<strong>modified:</strong> '.$rw['tanggal_modifikasi'].'<br/>';
@@ -49,8 +49,8 @@
           </div>
           <div class="row">
             <div class="input-field col s6">
-              <a href="#" onclick="document.getElementById('new_group').submit(); return false;" class="btn-large waves-effect waves-light tosca">Submit</a>
               <a href="#" onclick="switchElement('table', 'form'); return false;" class="btn-large waves-effect waves-light red">Cancel</a>
+              <a href="#" onclick="document.getElementById('new_group').submit(); return false;" class="btn-large waves-effect waves-light teal">Submit</a>
             </div>
           </div>
         </form>
@@ -66,8 +66,8 @@
           <p>Are you sure deleting this data?</p>
         </div>
         <div class="modal-footer">
+          <a href="#!" class="btn waves-effect waves-light teal z-depth-0" id="confirm_delete_button">Yes</a>
           <a href="#!" class="modal-close btn waves-effect waves-light red z-depth-0">Cancel</a>
-          <a href="#!" class="btn waves-effect waves-light tosca z-depth-0" id="confirm_delete_button">Yes</a>
         </div>
       </div>
 

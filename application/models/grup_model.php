@@ -32,5 +32,14 @@ class Grup_model extends MY_Model {
 			return false;
 		}
 	}
+
+	public function addGroupMember($details) {
+		$q = $this->db->insert('grup_has_nomor', $details);
+	}
+
+	public function deleteGroupMember($details) {
+		$this->db->where($details);
+		$q = $this->db->delete('grup_has_nomor');
+	}
 }
 ?>

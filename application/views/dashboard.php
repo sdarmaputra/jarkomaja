@@ -21,9 +21,9 @@
       </ul>
       <nav>
         <div class="nav-wrapper cyan accent-4">
-          <a href="#!" class="brand-logo" style="padding: 5px;"><?php echo $this->config->item('site_name'); ?></a>
+          <a href="#!" class="brand-logo" style="padding: 0.2em 0.5em;"><i class="left material-icons">perm_phone_msg</i><?php echo $this->config->item('site_name'); ?></a>
           <ul class="right hide-on-med-and-down">
-            <li style="width:200px; text-align:right;"><a class="dropdown-button" href="#!" data-activates="dropdown_user"><?php echo $this->session->userdata('username'); ?><i class="material-icons right">arrow_drop_down</i></a></li>
+            <li style="width:350px; text-align:right;"><a class="dropdown-button" href="#!" data-activates="dropdown_user">What's up! <?php echo $this->session->userdata('username'); ?><i class="material-icons right">arrow_drop_down</i></a></li>
           </ul>
         </div>
       </nav>
@@ -31,9 +31,9 @@
 
     <div class="row" style="margin:0px;">
 
-      <div id="sidebar" class="col s12 m3 l2 grey lighten-2 z-depth-2" style="padding:0; height: 700px;"> 
+      <div id="sidebar" class="col s12 m3 l2 grey lighten-2 z-depth-1" style="padding:0; height: 700px;"> 
         <div class="collection" style="padding:0; margin:0;">
-          <a href="#!" class="collection-item"><i class="left material-icons">web</i>Dashboard</a>
+          <a href="<?php echo site_url('dashboard'); ?>" class="collection-item"><i class="left material-icons">web</i>Dashboard</a>
           <a href="<?php echo site_url('dashboard/broadcast'); ?>" class="collection-item"><i class="left material-icons">message</i>Broadcast Messages</a>
           <a href="<?php echo site_url('dashboard/groups'); ?>" class="collection-item"><i class="left material-icons">perm_contact_calendar</i>Group Management</a>
           <a href="<?php echo site_url('dashboard/recipients'); ?>" class="collection-item"><i class="left material-icons">perm_contact_calendar</i>Recipient Management</a>
@@ -42,15 +42,15 @@
       </div>
 
       <div class="col s12 m9 l10">
-          <div class="container" id="content">
+          <div class="container" id="content" style="padding: 3em 0em;">
             <?php echo $body; ?>
           </div>
       </div>
     </div>
-    <footer class="page-footer light-blue darken-4" style="margin:0px; padding:0px;">
-      <div class="footer-copyright light-blue darken-4">
-        <div class="container light-blue darken-4">
-        © 2015 Copyright AJK
+    <footer class="page-footer cyan accent-4" style="margin:0px; padding:0px;">
+      <div class="footer-copyright cyan accent-4">
+        <div class="container cyan accent-4">
+        &copy; 2015 Computer Architecture and Network Laboratory
         </div>
       </div>
     </footer>
