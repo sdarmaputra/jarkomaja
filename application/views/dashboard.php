@@ -41,8 +41,8 @@
         </div>
       </div>
 
-      <div class="col s12 m9 l10">
-          <div class="container" id="content" style="padding: 3em 0em;">
+      <div class="col s12 m9 l10" id="content">
+          <div class="container" style="padding: 3em 0em;">
             <?php echo $body; ?>
           </div>
       </div>
@@ -57,9 +57,12 @@
     <script>
       window.onload = function() {
         var height;
-        if ($(window).height() > 600) {
-          height = $(window).height() + 'px';
-        }
+        var win = $(window).height();
+        var content = $('#content').height();
+        if ( win > 600 || content > 600) {
+          if (win > content) height = win + 'px';
+          else height = content + 'px';
+        } 
         document.getElementById('sidebar').style.height = height;  
       }
     </script>
