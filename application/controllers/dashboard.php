@@ -90,7 +90,7 @@ class Dashboard extends MY_Controller {
 		}
 	}
 
-	function group_member($group_id = null) {
+	function group_member($group_id = null, $start = 0) {
 		$data = $this->data;
 		if ($group_id != null) {
 			$this->load->model(array('nomor_model', 'grup_model'));
@@ -101,13 +101,30 @@ class Dashboard extends MY_Controller {
 					$data['namagrup'] = $rx['namagrup'];
 				}
 				$data['idgrup'] = $group_id;
-				$data['recipient_list'] = $this->nomor_model->getByGroupId($group_id);	
+
+				$this->load->library('pagination');
+				$limit = 10;
+				$offset = $start;	
+
+				$data['recipient_list'] = $this->nomor_model->getByGroupId($group_id, $limit, $offset);	
+				$data['recipientCount'] = $this->nomor_model->countByGroupId($group_id);
+				$config = $this->paginationConfig;
+				$config['base_url'] = site_url('dashboard/group_member/'.$group_id);
+				$config['total_rows'] = $data['recipientCount'];
+				$config['per_page'] = $limit; 
+				$config['uri_segment'] = 4;
+				
+				$this->pagination->initialize($config); 
+				$data['pagination'] = $this->pagination->create_links();
+				$data['start'] = $offset;
+				$data['limit'] = $limit;
+
 				$this->template->load('dashboard', 'group_member', $data);
 			} else redirect(site_url('dashboard/groups'));
 		} else redirect(site_url('dashboard/groups'));
 	}
 
-	function add_member($group_id = null, $table_page = 0) {
+	function add_member($group_id = null, $start = 0) {
 		$data = $this->data;
 		if ($group_id != null) {
 			$this->load->model(array('nomor_model', 'grup_model'));
@@ -118,7 +135,24 @@ class Dashboard extends MY_Controller {
 					$data['namagrup'] = $rx['namagrup'];
 				}
 				$data['idgrup'] = $group_id;
-				$data['recipient_list'] = $this->nomor_model->getNotIncludedIn($group_id);	
+
+				$this->load->library('pagination');
+				$limit = 10;
+				$offset = $start;	
+
+				$data['recipient_list'] = $this->nomor_model->getNotIncludedIn($group_id, $limit, $offset);
+				$data['recipientCount'] = $this->nomor_model->countNotIncludedIn($group_id);
+				$config = $this->paginationConfig;
+				$config['base_url'] = site_url('dashboard/add_member/'.$group_id);
+				$config['total_rows'] = $data['recipientCount'];
+				$config['per_page'] = $limit; 
+				$config['uri_segment'] = 4;
+				
+				$this->pagination->initialize($config); 
+				$data['pagination'] = $this->pagination->create_links();
+				$data['start'] = $offset;
+				$data['limit'] = $limit;
+
 				$this->template->load('dashboard', 'add_member', $data);
 			} else redirect(site_url('dashboard/groups'));
 		} else redirect(site_url('dashboard/groups'));

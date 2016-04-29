@@ -1,7 +1,12 @@
       <div class="row" id="table">
         <h4>Recipient Management</h4>
         <div class="chip">
-          Showing <?php echo ($start+1).'-'.($start+$limit).' from '.$recipientCount.' data'; ?>
+          Showing 
+          <?php 
+            $end = $start + $limit;
+            if ($end >= $recipientCount) $end = $recipientCount;
+            echo ($start+1).'-'.($end).' from '.$recipientCount.' data'; 
+          ?>
         </div>
         <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
           <a class="btn-large waves-effect waves-light cyan darken-1" onclick="switchElement('form', 'table'); return false;">

@@ -1,5 +1,13 @@
       <div class="row" id="table">
         <h4>Group Member Management | <?php echo $namagrup; ?></h4>
+        <div class="chip">
+          Showing 
+          <?php 
+            $end = $start + $limit;
+            if ($end >= $recipientCount) $end = $recipientCount;
+            echo ($start+1).'-'.($end).' from '.$recipientCount.' data'; 
+          ?>
+        </div>
 
         <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
           <a href="<?php echo site_url('dashboard/groups'); ?>" class="btn-large waves-effect waves-light red">
@@ -25,7 +33,7 @@
             <form id="delete_form" action="<?php echo site_url('dashboard/delete_checked_from_group'); ?>" method="POST">
             <?php 
               if ($recipient_list) {
-                $i = 1;
+                $i = $start+1;
                 foreach ($recipient_list as $rw) { ?>
                   <tr>
                     <td>
@@ -36,7 +44,7 @@
                     <td><?php echo $rw['nomorhp']; ?></td>
                     <td><?php echo $rw['nama']; ?></td>
                     <td>
-                      <a href="#" class="red-text tooltipped" data-position="right" data-delay="50" data-tooltip="Remove from group" onclick="confirm_delete('<?php echo $rw['idnomorhp']; ?>'); return false;"><i class="material-icons">not_interested</i></a>
+                      <a href="#" class="red-text tooltipped" data-position="right" data-delay="50" data-tooltip="Remove from group" onclick="confirm_delete('<?php echo $rw['idnomorhp']; ?>'); return false;"><i class="material-icons">delete</i></a>
                     </td>
                   </tr>      
             <?php $i++; }
@@ -46,6 +54,8 @@
            </form>
           </tbody>
         </table>
+
+        <?php echo $pagination; ?>
       </div>
       <div class="row">
         <a class="btn waves-effect waves-light red <?php if (!$recipient_list) echo 'disabled'; ?> " href="#" <?php if ($recipient_list){ ?>onclick="confirm_multiple_delete(); return false;" <?php } ?> >Delete selected</a>

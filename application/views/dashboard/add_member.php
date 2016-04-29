@@ -1,6 +1,13 @@
       <div class="row" id="table">
-        <h4>Add Group Member <div class="chip cyan lighten-3"><?php echo $namagrup; ?></div></h4>
-
+        <h4>Add Group Member to <?php echo $namagrup; ?></h4>
+        <div class="chip">
+          Showing 
+          <?php 
+            $end = $start + $limit;
+            if ($end >= $recipientCount) $end = $recipientCount;
+            echo ($start+1).'-'.($end).' from '.$recipientCount.' data'; 
+          ?>
+        </div>
 
         <table class="responsive-table highlight">
           <thead>
@@ -16,7 +23,7 @@
             <form id="add_form" action="<?php echo site_url('dashboard/do_add_member'); ?>" method="POST">
             <?php 
               if ($recipient_list) {
-                $i = 1;
+                $i = $start+1;
                 foreach ($recipient_list as $rw) { ?>
                   <tr>
                     <td>
@@ -34,6 +41,9 @@
            </form>
           </tbody>
         </table>
+
+        <?php echo $pagination; ?>
+
       </div>
       <div class="row">
         <a class="btn waves-effect waves-light red" href="<?php echo site_url('dashboard/group_member/'.$idgrup); ?>" >Cancel</a>

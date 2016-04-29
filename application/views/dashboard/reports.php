@@ -1,7 +1,12 @@
       <div class="row" id="table">
         <h4>Reports</h4>
         <div class="chip">
-          Showing <?php echo ($start+1).'-'.($start+$limit).' from '.$reportsCount.' data'; ?>
+          Showing 
+          <?php 
+            $end = $start + $limit;
+            if ($end >= $reportsCount) $end = $reportsCount;
+            echo ($start+1).'-'.($end).' from '.$reportsCount.' data'; 
+          ?>
         </div>
         <table class="responsive-table highlight">
           <thead>
