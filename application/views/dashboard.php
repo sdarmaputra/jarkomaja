@@ -15,12 +15,12 @@
   <body>
     <div class="navbar-fixed">
       <ul id="dropdown_user" class="dropdown-content">
-        <li><a href="#!"><i class="left material-icons">settings</i>Profile Settings</a></li>
+        <li><a class="blue-text text-darken-2" href="#!"><i class="left material-icons">settings</i>Profile Settings</a></li>
         <li class="divider"></li>
-        <li><a href="<?php echo site_url('gate/logout'); ?>"><i class="left material-icons">power_settings_new</i>Log Out</a></li>
+        <li><a class="blue-text text-darken-2" href="<?php echo site_url('gate/logout'); ?>"><i class="left material-icons">power_settings_new</i>Log Out</a></li>
       </ul>
       <nav>
-        <div class="nav-wrapper cyan accent-4">
+        <div class="nav-wrapper blue darken-2">
           <a href="#!" class="brand-logo" style="padding: 0.2em 0.5em;"><i class="left material-icons">perm_phone_msg</i><?php echo $this->config->item('site_name'); ?></a>
           <ul class="right hide-on-med-and-down">
             <li style="width:350px; text-align:right;"><a class="dropdown-button" href="#!" data-activates="dropdown_user">What's up! <?php echo $this->session->userdata('username'); ?><i class="material-icons right">arrow_drop_down</i></a></li>
@@ -33,11 +33,11 @@
 
       <div id="sidebar" class="col s12 m3 l2 grey lighten-2 z-depth-1" style="padding:0; height: 700px;"> 
         <div class="collection" style="padding:0; margin:0;">
-          <a href="<?php echo site_url('dashboard'); ?>" class="collection-item"><i class="left material-icons">web</i>Dashboard</a>
-          <a href="<?php echo site_url('dashboard/broadcast'); ?>" class="collection-item"><i class="left material-icons">message</i>Broadcast Messages</a>
-          <a href="<?php echo site_url('dashboard/groups'); ?>" class="collection-item"><i class="left material-icons">perm_contact_calendar</i>Group Management</a>
-          <a href="<?php echo site_url('dashboard/recipients'); ?>" class="collection-item"><i class="left material-icons">perm_contact_calendar</i>Recipient Management</a>
-          <a href="<?php echo site_url('dashboard/reports'); ?>" class="collection-item"><i class="left material-icons">view_list</i>Reports</a>
+          <a href="<?php echo site_url('dashboard'); ?>" class="collection-item blue-text text-darken-2"><i class="left material-icons">web</i>Dashboard</a>
+          <a href="<?php echo site_url('dashboard/broadcast'); ?>" class="collection-item blue-text text-darken-2"><i class="left material-icons">message</i>Broadcast Messages</a>
+          <a href="<?php echo site_url('dashboard/groups'); ?>" class="collection-item blue-text text-darken-2"><i class="left material-icons">perm_contact_calendar</i>Group Management</a>
+          <a href="<?php echo site_url('dashboard/recipients'); ?>" class="collection-item blue-text text-darken-2"><i class="left material-icons">perm_contact_calendar</i>Recipient Management</a>
+          <a href="<?php echo site_url('dashboard/reports'); ?>" class="collection-item blue-text text-darken-2"><i class="left material-icons">view_list</i>Reports</a>
         </div>
       </div>
 
@@ -47,9 +47,9 @@
           </div>
       </div>
     </div>
-    <footer class="page-footer cyan accent-4" style="margin:0px; padding:0px;">
-      <div class="footer-copyright cyan accent-4">
-        <div class="container cyan accent-4">
+    <footer class="page-footer blue darken-2" style="margin:0px; padding:0px;">
+      <div class="footer-copyright blue darken-2">
+        <div class="container blue darken-2">
         &copy; 2015 Computer Architecture and Network Laboratory
         </div>
       </div>

@@ -47,7 +47,7 @@
                   </a>
                 </div>
                 <div class="row">
-                  <a href="#" class="col s12 btn-large waves-effect waves-light btn teal white-text">
+                  <a href="#" class="col s12 btn-large waves-effect waves-light btn cyan darken-1 white-text">
                     <span class="center-align">Register</span>
                   </a>
                 </div>

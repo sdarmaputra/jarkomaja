@@ -48,14 +48,14 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = '10.151.36.55';
-$db['default']['username'] = 'root';
-$db['default']['password'] = 'nst2015';
+$db['default']['hostname'] = 'localhost';
+$db['default']['username'] = 'jarkomaja';
+$db['default']['password'] = 'jarkomaja';
 
 // $db['default']['hostname'] = 'localhost';
 // $db['default']['username'] = 'jarkomaja';
 // $db['default']['password'] = 'jarkomaja.';
-$db['default']['database'] = 'mydb';
+$db['default']['database'] = 'jarkomaja';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;

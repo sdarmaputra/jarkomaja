@@ -258,3 +258,16 @@ h1, h2, h3, h4, h5, h6, p, blockquote, footer, ul li, a {
 	font-size: 16;
 	min-height: 60%;
 }
+
+.progress {
+	position: fixed;
+	margin: 0;
+	z-index: 999;
+}
+.progress .determinate {
+	background-color: #ffee58;
+}
+
+.card .card-action a {
+	color: #fff;
+}

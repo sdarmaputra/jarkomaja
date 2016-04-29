@@ -1,11 +1,34 @@
 <?php
 class Dashboard extends MY_Controller {
 	var $data = array();
+	var $paginationConfig;
 	function __construct() {
 		parent:: __construct();
 		if ((null == $this->session->userdata('is_logged_in')) || $this->session->userdata('is_logged_in')==0) {
 			redirect(site_url('gate'));
 		}
+
+		$this->paginationConfig = array(
+			'full_tag_open' => '<ul class="center-align pagination">',
+			'full_tag_close' => '</ul>',
+			'num_tag_open' => '<li class="waves-effect">',
+			'num_tag_close' => '</li>',
+			'cur_tag_open' => '<li class="active"><a href=#!>',
+			'cur_tag_close' => '</a></li>',
+			'prev_link' => '<i class="tiny material-icons">chevron_left</i>',
+			'prev_tag_open' => '<li class="waves-effect">',
+			'prev_tag_close' => '</li>',
+			'next_link' => '<i class="tiny material-icons">chevron_right</i>',
+			'next_tag_open' => '<li class="waves-effect">',
+			'next_tag_close' => '</li>',
+			'first_link' => 'First',
+			'first_tag_open' => '<li class="waves-effect">',
+			'first_tag_close' => '</li>',
+			'last_link' => 'Last',
+			'last_tag_open' => '<li class="waves-effect">',
+			'last_tag_close' => '</li>'
+		);
+		
 	}
 
 	function index() {
@@ -206,13 +229,29 @@ class Dashboard extends MY_Controller {
 		redirect(site_url('dashboard/groups'), 'refresh');
 	}
 
-	function recipients($option = null, $id = null) {
+	function recipients($option = 0, $id = null) {
 		$data = $this->data;
+
 		$this->load->model('nomor_model');		
-		if ($option == null && $id == null) {
-			$data['recipient_list'] = $this->nomor_model->getAll();
+		if (($option == 0 && $id == null) || is_numeric($option)) {
+			$this->load->library('pagination');
+			$limit = 10;
+			$offset = $option;	
+
+			$data['recipient_list'] = $this->nomor_model->getWhere(null, null, $limit, $offset);
+			$data['recipientCount'] = $this->nomor_model->countAll();
+			$config = $this->paginationConfig;
+			$config['base_url'] = site_url('dashboard/recipients');
+			$config['total_rows'] = $data['recipientCount'];
+			$config['per_page'] = $limit; 
+			
+			$this->pagination->initialize($config); 
+			$data['pagination'] = $this->pagination->create_links();
+			$data['start'] = $offset;
+			$data['limit'] = $limit;
+
 			$this->template->load('dashboard', 'recipients', $data);
-		} else {
+		} else if ($option == 'edit'){
 			$data['details'] = $this->nomor_model->getById($id);
 			if (!$data['details']) redirect(site_url('dashboard/recipients'), 'refresh');
 			$this->template->load('dashboard', 'recipient_edit', $data);
@@ -270,10 +309,26 @@ class Dashboard extends MY_Controller {
 		redirect(site_url('dashboard/recipients/edit/'.$recipient_id), 'refresh');
 	}
 
-	function reports() {
+	function reports($start = 0) {
+		$this->load->library('pagination');
 		$data = $this->data;
+		$limit = 10;
+		$offset = $start;
+
 		$this->load->model('report_model');
-		$data['reports'] = $this->report_model->getWhere(array('iduser' => $this->session->userdata('iduser')), 'tanggal desc');
+		$data['reports'] = $this->report_model->getWhere(array('iduser' => $this->session->userdata('iduser')), 'tanggal desc', $limit, $offset);
+		$data['reportsCount'] = $this->report_model->countWhere(array('iduser' => $this->session->userdata('iduser')));
+
+		$config = $this->paginationConfig;
+		$config['base_url'] = site_url('dashboard/reports');
+		$config['total_rows'] = $data['reportsCount'];
+		$config['per_page'] = $limit; 
+		
+		$this->pagination->initialize($config); 
+		$data['pagination'] = $this->pagination->create_links();
+		$data['start'] = $offset;
+		$data['limit'] = $limit;
+
 		$this->template->load('dashboard', 'reports', $data);
 	}
 }

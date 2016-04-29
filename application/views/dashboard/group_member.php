@@ -1,11 +1,11 @@
       <div class="row" id="table">
-        <h4>Group Member Management <div class="chip cyan lighten-3"><?php echo $namagrup; ?></div></h4>
+        <h4>Group Member Management | <?php echo $namagrup; ?></h4>
 
         <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
           <a href="<?php echo site_url('dashboard/groups'); ?>" class="btn-large waves-effect waves-light red">
-            <i class="large material-icons left">skip_previous</i> Back
+            <i class="large material-icons left">chevron_left</i> Back
           </a>
-          <a href="<?php echo site_url('dashboard/add_member/'.$idgrup); ?>" class="btn-large waves-effect waves-light teal">
+          <a href="<?php echo site_url('dashboard/add_member/'.$idgrup); ?>" class="btn-large waves-effect waves-light cyan darken-1">
             <i class="large material-icons left">playlist_add</i> Add New Member
           </a>
         </div>
@@ -62,7 +62,7 @@
           <p>Are you sure deleting this data from group?</p>
         </div>
         <div class="modal-footer">
-          <a href="#!" class="btn waves-effect waves-light teal z-depth-0" id="confirm_delete_button">Yes</a>
+          <a href="#!" class="btn waves-effect waves-light cyan darken-1 z-depth-0" id="confirm_delete_button">Yes</a>
           <a href="#!" class="modal-close btn waves-effect waves-light red z-depth-0">Cancel</a>
         </div>
       </div>

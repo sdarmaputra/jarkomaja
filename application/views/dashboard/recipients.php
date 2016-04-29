@@ -1,8 +1,10 @@
       <div class="row" id="table">
         <h4>Recipient Management</h4>
-
+        <div class="chip">
+          Showing <?php echo ($start+1).'-'.($start+$limit).' from '.$recipientCount.' data'; ?>
+        </div>
         <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-          <a class="btn-large waves-effect waves-light teal" onclick="switchElement('form', 'table'); return false;">
+          <a class="btn-large waves-effect waves-light cyan darken-1" onclick="switchElement('form', 'table'); return false;">
             <i class="large material-icons left">playlist_add</i> Add New Recipient
           </a>
         </div>
@@ -20,14 +22,14 @@
           <tbody>
             <?php 
               if ($recipient_list) {
-                $i = 1;
+                $i = $start+1;
                 foreach ($recipient_list as $rw) { ?>
                   <tr>
                     <td><?php echo $i; ?></td>
                     <td><?php echo $rw['nomorhp']; ?></td>
                     <td><?php echo $rw['nama']; ?></td>
                     <td>
-                      <a class="teal-text" href="<?php echo site_url('dashboard/recipients/edit/'.$rw['idnomorhp']); ?>"><i class="material-icons">settings</i></a>
+                      <a class="amber-text" href="<?php echo site_url('dashboard/recipients/edit/'.$rw['idnomorhp']); ?>"><i class="material-icons">settings</i></a>
                       <a class="red-text" href="#" onclick="confirm_delete('<?php echo $rw['idnomorhp']; ?>'); return false;"><i class="material-icons">delete</i></a>
                     </td>
                   </tr>      
@@ -36,6 +38,8 @@
              ?>
           </tbody>
         </table>
+
+        <?php echo $pagination; ?>
       </div>
 
       <div class="row" id="form" style="display:none;">
@@ -58,7 +62,7 @@
           <div class="row">
             <div class="input-field col s6">
               <a href="#" onclick="switchElement('table', 'form'); return false;" class="btn-large waves-effect waves-light red">Cancel</a>
-              <a href="#" onclick="document.getElementById('new_recipient').submit(); return false;" class="btn-large waves-effect waves-light teal">Submit</a>
+              <a href="#" onclick="document.getElementById('new_recipient').submit(); return false;" class="btn-large waves-effect waves-light cyan darken-1">Submit</a>
             </div>
           </div>
         </form>
@@ -74,7 +78,7 @@
           <p>Are you sure deleting this data?</p>
         </div>
         <div class="modal-footer">
-          <a href="#!" class="btn waves-effect waves-light teal z-depth-0" id="confirm_delete_button">Yes</a>
+          <a href="#!" class="btn waves-effect waves-light cyan darken-1 z-depth-0" id="confirm_delete_button">Yes</a>
           <a href="#!" class="modal-close btn waves-effect waves-light red z-depth-0">Cancel</a>
         </div>
       </div>

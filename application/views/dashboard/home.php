@@ -1,7 +1,7 @@
 	
 		<div class="row">
 	      <div class="col s12 m7">
-	        <div class="card-panel teal">
+	        <div class="card-panel blue darken-2">
 	          <span class="white-text">
 	          	<h4>Welcome, <?php echo $this->session->userdata('username'); ?>!</h4>
 	          	<strong>JARKOMAJA</strong> is an application which has purpose to help people broadcast their messages into community.
@@ -13,7 +13,7 @@
 	          </span>
 	        </div>
 
-	        <div class="card-panel orange lighten-1">
+	        <div class="card-panel blue darken-2">
 	          <span class="white-text">
 	          	<h4>We are still working :)</h4>
 	          	<strong>JARKOMAJA</strong> is under development. Help us by giving feedback and support.
@@ -47,19 +47,21 @@
 	    <div class="row" style="padding-top: 2em;">
 	    	<h5 style="padding-left: 0.5em;">Your Statistics</h5>
 	    	<div class="col s12 m5">
-		        <div class="card-panel red lighten-1">
+		        <div class="card-panel amber lighten-1">
 		          <span class="white-text">
 		          	<h3><?php echo $group_count; ?></h3>
-		          	<h5>Managed Group <a class="white-text tooltipped" data-position="right" data-delay="50" data-tooltip="Got to groups page" href="<?php echo site_url('dashboard/groups'); ?>"><i class="material-icons right">launch</i></a></h5>
+		          	<h5>Managed Group</h5>
+		          	<a class="white-text" href="<?php echo site_url('dashboard/groups'); ?>">Go to groups page<i class="material-icons left">launch</i></a>
 		          </span>
 		        </div>
 		    </div>
 
 		    <div class="col s12 m5">
-		        <div class="card-panel deep-orange lighten-1">
+		        <div class="card-panel amber lighten-1">
 		          <span class="white-text">
 		          	<h3><?php echo $report_count; ?></h3>
-		          	<h5>Delivery Reports <a class="white-text tooltipped" data-position="right" data-delay="50" data-tooltip="Got to reports page" href="<?php echo site_url('dashboard/reports'); ?>"><i class="material-icons right">launch</i></a></h5>
+		          	<h5>Delivery Reports</h5>
+		          	<a class="white-text" href="<?php echo site_url('dashboard/reports'); ?>">Go to reports page <i class="material-icons left">launch</i></a>
 		          </span>
 		        </div>
 		    </div>

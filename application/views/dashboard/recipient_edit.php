@@ -29,7 +29,7 @@
                 <div class="input-field col s12">
                   <input type="hidden" name="recipient_id" value="<?php echo $rw['idnomorhp']; ?>">
                   <a href="<?php echo site_url('dashboard/recipients'); ?>" class="btn-large waves-effect waves-light red">Cancel</a>
-                  <a href="#" class="btn-large waves-effect waves-light teal" onclick="confirm_update(); return false;">Save Changes</a>
+                  <a href="#" class="btn-large waves-effect waves-light cyan darken-1" onclick="confirm_update(); return false;">Save Changes</a>
                 </div>
               </div>
             </form>
@@ -39,7 +39,7 @@
                   <p>Are you sure updating this data?</p>
                 </div>
                 <div class="modal-footer">
-                  <a href="#!" onclick="document.getElementById('edit_group').submit(); return false;" class="btn waves-effect waves-light teal z-depth-0" id="confirm_delete_button">Yes</a>
+                  <a href="#!" onclick="document.getElementById('edit_group').submit(); return false;" class="btn waves-effect waves-light cyan darken-1 z-depth-0" id="confirm_delete_button">Yes</a>
                   <a href="#!" class="modal-close btn waves-effect waves-light red z-depth-0">Cancel</a>
                 </div>
               </div>

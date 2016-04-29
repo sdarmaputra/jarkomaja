@@ -37,7 +37,7 @@
       </div>
       <div class="row">
         <a class="btn waves-effect waves-light red" href="<?php echo site_url('dashboard/group_member/'.$idgrup); ?>" >Cancel</a>
-        <a class="btn waves-effect waves-light teal <?php if (!$recipient_list) echo 'disabled'; ?> " href="#" <?php if ($recipient_list){ ?>onclick="$('#add_form').submit(); return false;" <?php } ?> >Submit</a>
+        <a class="btn waves-effect waves-light cyan darken-1 <?php if (!$recipient_list) echo 'disabled'; ?> " href="#" <?php if ($recipient_list){ ?>onclick="$('#add_form').submit(); return false;" <?php } ?> >Submit</a>
       </div>
 
       <script>

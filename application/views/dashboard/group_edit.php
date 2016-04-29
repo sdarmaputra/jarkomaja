@@ -23,7 +23,7 @@
                 <div class="input-field col s12">
                   <input type="hidden" name="group_id" value="<?php echo $rw['idgrup']; ?>">
                   <a href="<?php echo site_url('dashboard/groups'); ?>" class="btn-large waves-effect waves-light red">Cancel</a>
-                  <a href="#" class="btn-large waves-effect waves-light teal" onclick="confirm_update(); return false;">Save Changes</a>
+                  <a href="#" class="btn-large waves-effect waves-light cyan darken-1" onclick="confirm_update(); return false;">Save Changes</a>
                 </div>
               </div>
 
