@@ -22,10 +22,20 @@
       </ul>
       <nav>
         <div class="nav-wrapper blue darken-2">
-          <!-- <a href="#!" class="brand-logo" style="padding: 0 0.5em;"><i class="left material-icons">perm_phone_msg</i><?php echo $this->config->item('site_name'); ?></a> -->
+          <a href="#" data-activates="slide-out" class="button-collapse" style="padding:0 0.5em;"><i class="mdi-navigation-menu"></i></a>
           <a href="<?php echo site_url(); ?>" class="brand-logo" style="padding:0 0.5em;"><img src="<?php echo base_url('public/img/jarkomaja-white.png'); ?>" style="height: 30px; margin: 17px 0; display: block;"></a>
           <ul class="right hide-on-med-and-down">
             <li style="width:250px; text-align:right;"><a class="dropdown-button" href="#!" data-activates="dropdown_user">What's up! <?php echo $this->session->userdata('username'); ?><i class="material-icons right">arrow_drop_down</i></a></li>
+          </ul>
+          <!-- Side nav for mobile -->
+          <ul id="slide-out" class="side-nav">
+            <li><a href="<?php echo site_url('dashboard'); ?>" class="collection-item blue-text text-darken-2">Dashboard</a></li>
+            <li><a href="<?php echo site_url('dashboard/broadcast'); ?>" class="collection-item blue-text text-darken-2">Broadcast Messages</a></li>
+            <li><a href="<?php echo site_url('dashboard/groups'); ?>" class="collection-item blue-text text-darken-2">Group Management</a></li>
+            <li><a href="<?php echo site_url('dashboard/recipients'); ?>" class="collection-item blue-text text-darken-2">Recipient Management</a></li>
+            <li><a href="<?php echo site_url('dashboard/reports'); ?>" class="collection-item blue-text text-darken-2">Reports</a></li>
+            <li class="divider"></li>
+            <li><a class="blue-text text-darken-2" href="<?php echo site_url('gate/logout'); ?>">Log Out</a></li>
           </ul>
         </div>
       </nav>
@@ -33,8 +43,8 @@
 
     <div class="row" style="margin:0px;">
 
-      <div id="sidebar" class="col s12 m3 l2 grey lighten-2 z-depth-1" style="padding:0; height: 700px;"> 
-        <div class="collection" style="padding:0; margin:0;">
+      <div id="sidebar" class="col s12 m3 l2 grey lighten-2 z-depth-1 hide-on-small-only" style="padding:0; height: 700px;"> 
+        <div id="sidebar-items" class="collection" style="padding:0; margin:0;">
           <a href="<?php echo site_url('dashboard'); ?>" class="collection-item blue-text text-darken-2"><i class="left material-icons">web</i>Dashboard</a>
           <a href="<?php echo site_url('dashboard/broadcast'); ?>" class="collection-item blue-text text-darken-2"><i class="left material-icons">message</i>Broadcast Messages</a>
           <a href="<?php echo site_url('dashboard/groups'); ?>" class="collection-item blue-text text-darken-2"><i class="left material-icons">perm_contact_calendar</i>Group Management</a>
@@ -64,8 +74,17 @@
         if ( win > 600 || content > 600) {
           if (win > content) height = win + 'px';
           else height = content + 'px';
-        } 
+        }
+        $(".button-collapse").sideNav(); 
         document.getElementById('sidebar').style.height = height;  
+        $('#sidebar-items').animate({top: $(document).scrollTop()}, 300);
+
+        $(window).scroll(function(){
+          clearTimeout($('#sidebar-items').t);
+          setTimeout(function(){
+            $('#sidebar-items').animate({top: $(document).scrollTop()}, 300);
+          }, 50);            
+        });
       }
     </script>
   </body>

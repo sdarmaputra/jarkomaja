@@ -11,7 +11,7 @@
           <?php
             if ($group_list) {
               foreach ($group_list as $rw) { ?>
-                <div class="col s6 m5 l4">
+                <div class="col s12 m5 l4">
                   <div class="card blue darken-2 tooltipped" data-position="top" data-delay="50" data-tooltip="<?php echo $rw['namagrup']; ?>">
                     <div class="card-content">
                       <span class="card-title truncate"><?php echo $rw['namagrup']; ?></span>
