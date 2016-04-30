@@ -1,5 +1,5 @@
       <div class="row" id="table">
-        <h4>Group Member Management | <?php echo $namagrup; ?></h4>
+        <h4>Group Member Management <br/> <?php echo $namagrup; ?></h4>
         <div class="chip">
           Showing 
           <?php 
@@ -9,7 +9,7 @@
           ?>
         </div>
 
-        <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+        <div class="fixed-action-btn floating-btn">
           <a href="<?php echo site_url('dashboard/groups'); ?>" class="btn-large waves-effect waves-light red">
             <i class="large material-icons left">chevron_left</i> Back
           </a>

@@ -49,9 +49,7 @@
                   </a>
                 </div>
                 <div class="row">
-                  <a href="#" class="col s12 btn-large waves-effect waves-light btn cyan darken-1 white-text">
-                    <span class="center-align">Register</span>
-                  </a>
+                  <div class="center-align grey-text">Have no account? <strong><a href="#" class="grey-text text-darken-2">Register NOW</a></strong></div>
                 </div>
               </div>
           </div>

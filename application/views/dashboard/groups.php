@@ -1,7 +1,7 @@
       <div class="row" id="table">
         <h4>Group Management </h4>
 
-        <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+        <div class="fixed-action-btn floating-btn">
           <a class="btn-large waves-effect waves-light cyan darken-1" onclick="switchElement('form', 'table'); return false;">
             <i class="large material-icons left">playlist_add</i> Add New Group
           </a>

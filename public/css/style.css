@@ -275,3 +275,8 @@ h1, h2, h3, h4, h5, h6, p, blockquote, footer, ul li, a {
 .fixed-action-btn {
 	z-index: 98;
 }
+.floating-btn {
+	top: 70px;
+	right: 15px;
+	bottom: auto;
+}

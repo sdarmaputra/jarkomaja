@@ -8,7 +8,7 @@
             echo ($start+1).'-'.($end).' from '.$recipientCount.' data'; 
           ?>
         </div>
-        <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+        <div class="fixed-action-btn floating-btn">
           <a class="btn-large waves-effect waves-light cyan darken-1" onclick="switchElement('form', 'table'); return false;">
             <i class="large material-icons left">playlist_add</i> Add New Recipient
           </a>
