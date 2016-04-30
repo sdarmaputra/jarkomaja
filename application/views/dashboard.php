@@ -77,13 +77,13 @@
         }
         $(".button-collapse").sideNav(); 
         document.getElementById('sidebar').style.height = height;  
-        $('#sidebar-items').animate({top: $(document).scrollTop()}, 200);
+        $('#sidebar-items').animate({top: $(document).scrollTop()}, 100);
 
         $(window).scroll(function(){
           clearTimeout($('#sidebar-items').t);
           setTimeout(function(){
-            $('#sidebar-items').animate({top: $(document).scrollTop()}, 200);
-          }, 50);            
+            $('#sidebar-items').animate({top: $(document).scrollTop()}, 50);
+          }, 5);            
         });
       }
     </script>
