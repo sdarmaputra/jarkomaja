@@ -3,6 +3,7 @@
   <head>
     <title><?php echo $this->config->item('site_name'); ?></title>
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="img/png" rel="icon" href="<?php echo base_url('public/img/jarkomaja-ico.png'); ?>">
     <link type="text/css" rel="stylesheet" href="<?php echo base_url('public'); ?>/css/materialize.min.css"  media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="<?php echo base_url('public'); ?>/css/style.css"  media="screen,projection"/>
 
@@ -21,7 +22,8 @@
       </ul>
       <nav>
         <div class="nav-wrapper blue darken-2">
-          <a href="#!" class="brand-logo" style="padding: 0 0.5em;"><i class="left material-icons">perm_phone_msg</i><?php echo $this->config->item('site_name'); ?></a>
+          <!-- <a href="#!" class="brand-logo" style="padding: 0 0.5em;"><i class="left material-icons">perm_phone_msg</i><?php echo $this->config->item('site_name'); ?></a> -->
+          <a href="<?php echo site_url(); ?>" class="brand-logo" style="padding:0 0.5em;"><img src="<?php echo base_url('public/img/jarkomaja-white.png'); ?>" style="height: 30px; margin: 17px 0; display: block;"></a>
           <ul class="right hide-on-med-and-down">
             <li style="width:250px; text-align:right;"><a class="dropdown-button" href="#!" data-activates="dropdown_user">What's up! <?php echo $this->session->userdata('username'); ?><i class="material-icons right">arrow_drop_down</i></a></li>
           </ul>

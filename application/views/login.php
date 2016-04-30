@@ -3,6 +3,7 @@
   <head>
     <title><?php echo $this->config->item('site_name'); ?></title>
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="img/png" rel="icon" href="<?php echo base_url('public/img/jarkomaja-ico.png'); ?>">
     <link type="text/css" rel="stylesheet" href="<?php echo base_url('public'); ?>/css/materialize.min.css"  media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="<?php echo base_url('public'); ?>/css/style.css"  media="screen,projection"/>
 
@@ -12,16 +13,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
 
-  <body style="padding: 6em 0em;">
+  <body style="padding: 2.5em 0 0;">
      <div class="row">
       <div class="col s1 l4">
         &nbsp;
       </div>
       <div class="col s10 l4">
+          <div class="center-align"><img style="max-width:65%" src="<?php echo base_url('public/img/jarkomaja.png'); ?>"></div>
           <div class="card grey lighten-4" data-position="top" data-delay="50">
               <div class="card-content">
                 <div class="card-title grey-text text-darken-4">
-                  <div class="center-align">JARKOMAJA | <strong>LOGIN</strong></div>
+                  <div class="center-align"><strong>LOGIN</strong></div>
                 </div>
                 <form id="loginForm" action="<?php echo site_url('gate/auth'); ?>" method="POST">
                   <div class="row">
